@@ -1,0 +1,708 @@
+<!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Montserrat & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0090D0',
+                            blueDark: '#0071A4',
+                            blueLight: '#EBF7FC',
+                            green: '#70B62C',
+                            greenDark: '#558C20',
+                            greenLight: '#F2F9EC',
+                        },
+                        slateDark: '#1E293B',
+                        slateMedium: '#475569',
+                        bgLight: '#F8FAFC',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        brand: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .modal-blur {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="bg-bgLight text-slateDark font-sans selection:bg-brand-blueLight selection:text-brand-blueDark leading-relaxed antialiased">
+
+    <header class="fixed top-0 left-0 right-0 z-40 glass-nav border-b border-slate-200/80 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- SVG Brand Logo derived from provided image -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="bg-brand-blue p-2 sm:p-2.5 rounded-xl shadow-md flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+                        <svg class="h-8 sm:h-10 w-auto" viewBox="0 0 380 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Treatment Table -->
+                            <rect x="25" y="55" width="55" height="15" rx="3" fill="#A1D7EC" stroke="#1E293B" stroke-width="2.5"/>
+                            <path d="M 28 70 L 28 85 M 77 70 L 77 85" stroke="#1E293B" stroke-width="3" stroke-linecap="round"/>
+                            <!-- Client -->
+                            <circle cx="33" cy="47" r="5" fill="#FCE0D1" stroke="#1E293B" stroke-width="2"/>
+                            <path d="M 38 53 L 65 53" stroke="#FCE0D1" stroke-width="5" stroke-linecap="round"/>
+                            <!-- Practitioner -->
+                            <circle cx="62" cy="27" r="5.5" fill="#FCE0D1" stroke="#1E293B" stroke-width="2"/>
+                            <path d="M 54 38 C 54 33, 70 33, 70 38 L 68 53 L 56 53 Z" fill="#70B62C" stroke="#1E293B" stroke-width="2"/>
+                            <path d="M 58 38 L 48 48 M 66 38 L 52 50" stroke="#1E293B" stroke-width="2.5" stroke-linecap="round"/>
+                            <!-- Divider -->
+                            <line x1="92" y1="18" x2="92" y2="78" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/>
+                            <!-- Logo Text -->
+                            <text x="102" y="44" fill="#FFFFFF" font-family="Montserrat, sans-serif" font-weight="700" font-size="28" letter-spacing="2">LIFE'S</text>
+                            <text x="102" y="75" fill="#FFFFFF" font-family="Montserrat, sans-serif" font-weight="700" font-size="28" letter-spacing="2">ESSENTIALS</text>
+                            <text x="102" y="104" fill="#FFFFFF" font-family="Plus Jakarta Sans, sans-serif" font-weight="500" font-size="20" letter-spacing="0.5">Massage Therapy</text>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Links -->
+                <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slateDark/80">
+                    <a href="#how-it-works" class="hover:text-brand-blue transition-colors">How Mobile Works</a>
+                    <a href="#pricing" class="hover:text-brand-blue transition-colors">Pricing & Rates</a>
+                    <a href="#modalities" class="hover:text-brand-blue transition-colors">Modalities</a>
+                    <a href="#contact" class="hover:text-brand-blue transition-colors">Contact</a>
+                </nav>
+
+                <!-- Book CTA Header Button -->
+                <div class="hidden sm:flex items-center gap-4">
+                    <button onclick="openBookingModal()" class="bg-brand-green hover:bg-brand-greenDark text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2">
+                        <i class="fa-regular fa-calendar-check text-xs"></i> Book Mobile Session
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="lg:hidden p-2 text-slateDark hover:text-brand-blue focus:outline-none">
+                    <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Drawer -->
+        <div id="mobile-menu" class="hidden lg:hidden border-b border-slate-200 bg-white px-4 pt-3 pb-6 space-y-3 shadow-lg">
+            <a href="#how-it-works" onclick="toggleMobileMenu()" class="block py-2 text-base font-semibold text-slateDark hover:text-brand-blue border-b border-slate-100">How Mobile Works</a>
+            <a href="#pricing" onclick="toggleMobileMenu()" class="block py-2 text-base font-semibold text-slateDark hover:text-brand-blue border-b border-slate-100">Pricing & Sessions</a>
+            <a href="#modalities" onclick="toggleMobileMenu()" class="block py-2 text-base font-semibold text-slateDark hover:text-brand-blue border-b border-slate-100">Massage Modalities</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-base font-semibold text-slateDark hover:text-brand-blue border-b border-slate-100">Contact Us</a>
+            <div class="pt-2">
+                <button onclick="toggleMobileMenu(); openBookingModal();" class="w-full bg-brand-green hover:bg-brand-greenDark text-white py-3 rounded-xl font-bold text-center shadow">
+                    Book Session Online
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative pt-32 pb-20 lg:pt-36 lg:pb-28 overflow-hidden bg-gradient-to-b from-brand-blueLight/60 via-bgLight to-white">
+        <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-brand-blue/10 blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 -left-24 w-80 h-80 rounded-full bg-brand-green/10 blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-greenLight border border-brand-green/30 text-brand-greenDark text-xs font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-house-chimney-medical"></i> Premier Mobile Massage • San Diego, CA
+                    </div>
+
+                    <h1 class="font-brand text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slateDark leading-tight">
+                        Relaxation & Recovery Brought <span class="text-brand-blue">Straight To Your Door</span>
+                    </h1>
+
+                    <p class="text-slateMedium text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-normal">
+                        Life's Essentials Massage Therapy provides custom tailored bodywork at your home, hotel, or office in San Diego. Professional table, organic oils, and fresh linens fully provided.
+                    </p>
+
+                    <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <button onclick="openBookingModal()" class="w-full sm:w-auto bg-brand-blue hover:bg-brand-blueDark text-white px-8 py-4 rounded-full font-bold shadow-lg shadow-brand-blue/25 hover:shadow-xl transition-all flex items-center justify-center gap-2 text-base">
+                            <i class="fa-regular fa-calendar-plus"></i> Book In-Home Session
+                        </button>
+
+                        <a href="#pricing" class="w-full sm:w-auto border-2 border-brand-green text-brand-greenDark hover:bg-brand-green hover:text-white px-7 py-3.5 rounded-full font-bold transition-all text-center flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-tags"></i> View Rates ($90+)
+                        </a>
+                    </div>
+
+                    <!-- Trust Stats Bar -->
+                    <div class="pt-6 border-t border-slate-200/80 grid grid-cols-3 gap-3 text-center lg:text-left">
+                        <div>
+                            <p class="font-brand text-xl sm:text-2xl font-bold text-brand-blue">100% Mobile</p>
+                            <p class="text-xs text-slateMedium mt-0.5">We Come To You</p>
+                        </div>
+                        <div>
+                            <p class="font-brand text-xl sm:text-2xl font-bold text-brand-green">Customized</p>
+                            <p class="text-xs text-slateMedium mt-0.5">4 Unique Modalities</p>
+                        </div>
+                        <div>
+                            <p class="font-brand text-xl sm:text-2xl font-bold text-brand-blue">San Diego</p>
+                            <p class="text-xs text-slateMedium mt-0.5">Citywide Coverage</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Visual Card -->
+                <div class="lg:col-span-5">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <div class="relative rounded-3xl overflow-hidden shadow-2xl bg-white border-4 border-white aspect-[4/5]">
+                            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=800" 
+                                 alt="Mobile Massage Therapy San Diego" 
+                                 class="w-full h-full object-cover"
+                                 onerror="this.src='https://placehold.co/800x1000/0090D0/ffffff?text=Mobile+Massage+San+Diego'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slateDark/80 via-transparent to-transparent"></div>
+                            
+                            <div class="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md p-5 rounded-2xl shadow-xl border border-brand-blueLight">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-11 h-11 rounded-full bg-brand-green/20 text-brand-greenDark flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-spa text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs font-extrabold uppercase tracking-wider text-brand-blue">San Diego Mobile Spa</p>
+                                        <p class="text-xs font-medium text-slateDark/80">Tailored Deep Tissue, Sports, Shiatsu & Swedish</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-green block mb-2">In-Home Comfort</span>
+                <h2 class="font-brand text-3xl sm:text-4xl font-extrabold text-slateDark">How Mobile Massage Works</h2>
+                <div class="w-16 h-1 bg-brand-blue mx-auto mt-4 rounded-full"></div>
+                <p class="text-slateMedium text-sm sm:text-base mt-3">We transform your home, hotel, or office into a peaceful wellness sanctuary without the hassle of San Diego traffic.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="bg-bgLight p-8 rounded-2xl border border-slate-200/80 text-center relative hover:border-brand-blue transition-all shadow-sm">
+                    <div class="w-16 h-16 bg-brand-blue text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-md shadow-brand-blue/20">
+                        1
+                    </div>
+                    <h3 class="font-brand text-xl font-bold text-slateDark mb-3">Select Duration & Focus</h3>
+                    <p class="text-slateMedium text-sm leading-relaxed">
+                        Choose between 60, 90, or 120-minute sessions and mix modalities like Deep Tissue, Sports, Shiatsu, or Swedish.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-bgLight p-8 rounded-2xl border border-slate-200/80 text-center relative hover:border-brand-green transition-all shadow-sm">
+                    <div class="w-16 h-16 bg-brand-green text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-md shadow-brand-green/20">
+                        2
+                    </div>
+                    <h3 class="font-brand text-xl font-bold text-slateDark mb-3">We Bring The Setup</h3>
+                    <p class="text-slateMedium text-sm leading-relaxed">
+                        Your therapist arrives equipped with a sturdy massage table, fresh luxury linens, relaxing music, and hypoallergenic oils.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-bgLight p-8 rounded-2xl border border-slate-200/80 text-center relative hover:border-brand-blue transition-all shadow-sm">
+                    <div class="w-16 h-16 bg-brand-blue text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-md shadow-brand-blue/20">
+                        3
+                    </div>
+                    <h3 class="font-brand text-xl font-bold text-slateDark mb-3">Unwind & Recover</h3>
+                    <p class="text-slateMedium text-sm leading-relaxed">
+                        Enjoy a deeply rejuvenating therapeutic bodywork session and step right into relaxation in your own living room.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-24 bg-brand-blueLight/40 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-blue block mb-2">Transparent Mobile Pricing</span>
+                <h2 class="font-brand text-3xl sm:text-4xl font-extrabold text-slateDark">Custom Tailored Massage Rates</h2>
+                <div class="w-16 h-1 bg-brand-green mx-auto mt-4 rounded-full"></div>
+                <p class="text-slateMedium text-sm sm:text-base mt-3">All sessions are custom-tailored to your body's exact needs. Combine multiple modalities at no extra cost.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 items-stretch">
+                
+                <!-- 60 Min Option -->
+                <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between relative">
+                    <div>
+                        <div class="text-xs font-bold uppercase tracking-wider text-brand-blue bg-brand-blueLight px-3 py-1 rounded-full w-max mb-4">
+                            Targeted Relief
+                        </div>
+                        <h3 class="font-brand text-2xl font-bold text-slateDark mb-1">60 Minutes</h3>
+                        <p class="text-xs text-slateMedium mb-6">Custom Tailored Massage</p>
+                        
+                        <div class="mb-6">
+                            <span class="font-brand text-4xl font-extrabold text-slateDark">$90</span>
+                            <span class="text-xs text-slateMedium font-medium">/ session</span>
+                        </div>
+
+                        <ul class="space-y-3 text-sm text-slateMedium mb-8 border-t border-slate-100 pt-6">
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-check text-brand-green text-xs"></i> Ideal for specific problem areas
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-check text-brand-green text-xs"></i> Custom blend of modalities
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-check text-brand-green text-xs"></i> Full table setup & travel included
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button onclick="selectDurationAndBook('60 Minutes ($90)')" class="w-full bg-slateDark hover:bg-brand-blue text-white font-bold py-3.5 rounded-xl text-sm transition-colors shadow">
+                        Book 60 Mins ($90)
+                    </button>
+                </div>
+
+                <!-- 90 Min Option (POPULAR) -->
+                <div class="bg-white rounded-3xl p-8 border-2 border-brand-blue shadow-xl transition-all flex flex-col justify-between relative transform lg:-translate-y-2">
+                    <div class="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-brand-blue text-white text-[11px] font-extrabold uppercase tracking-widest px-4 py-1 rounded-full shadow">
+                        Most Popular
+                    </div>
+
+                    <div>
+                        <div class="text-xs font-bold uppercase tracking-wider text-brand-green bg-brand-greenLight px-3 py-1 rounded-full w-max mb-4 mt-2">
+                            Full Body Balance
+                        </div>
+                        <h3 class="font-brand text-2xl font-bold text-slateDark mb-1">90 Minutes</h3>
+                        <p class="text-xs text-slateMedium mb-6">Custom Tailored Massage</p>
+                        
+                        <div class="mb-6">
+                            <span class="font-brand text-4xl font-extrabold text-brand-blue">$130</span>
+                            <span class="text-xs text-slateMedium font-medium">/ session</span>
+                        </div>
+
+                        <ul class="space-y-3 text-sm text-slateMedium mb-8 border-t border-slate-100 pt-6">
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-check text-brand-green text-xs"></i> Full body work + focused tension release
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-check text-brand-green text-xs"></i> Recommended for maximum stress relief
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-check text-brand-green text-xs"></i> Tailored deep pressure & relaxation
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button onclick="selectDurationAndBook('90 Minutes ($130)')" class="w-full bg-brand-blue hover:bg-brand-blueDark text-white font-bold py-3.5 rounded-xl text-sm transition-colors shadow-md">
+                        Book 90 Mins ($130)
+                    </button>
+                </div>
+
+                <!-- 120 Min Option -->
+                <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between relative">
+                    <div>
+                        <div class="text-xs font-bold uppercase tracking-wider text-brand-blue bg-brand-blueLight px-3 py-1 rounded-full w-max mb-4">
+                            Ultimate Restoration
+                        </div>
+                        <h3 class="font-brand text-2xl font-bold text-slateDark mb-1">120 Minutes</h3>
+                        <p class="text-xs text-slateMedium mb-6">Custom Tailored Massage</p>
+                        
+                        <div class="mb-6">
+                            <span class="font-brand text-4xl font-extrabold text-slateDark">$180</span>
+                            <span class="text-xs text-slateMedium font-medium">/ session</span>
+                        </div>
+
+                        <ul class="space-y-3 text-sm text-slateMedium mb-8 border-t border-slate-100 pt-6">
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-check text-brand-green text-xs"></i> Comprehensive full-body treatment
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-check text-brand-green text-xs"></i> Extended time on all major muscle groups
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-check text-brand-green text-xs"></i> Deeply unhurried bodywork experience
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button onclick="selectDurationAndBook('120 Minutes ($180)')" class="w-full bg-slateDark hover:bg-brand-blue text-white font-bold py-3.5 rounded-xl text-sm transition-colors shadow">
+                        Book 120 Mins ($180)
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="modalities" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-green block mb-2">Our Expertise</span>
+                <h2 class="font-brand text-3xl sm:text-4xl font-extrabold text-slateDark">Massage Modalities</h2>
+                <div class="w-16 h-1 bg-brand-blue mx-auto mt-4 rounded-full"></div>
+                <p class="text-slateMedium text-sm sm:text-base mt-3">We specialize in four core techniques that can be blended seamlessly into your session.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Deep Tissue -->
+                <div class="bg-bgLight rounded-2xl p-6 border border-slate-200/80 hover:border-brand-blue transition-all group shadow-sm hover:shadow-md">
+                    <div class="w-12 h-12 rounded-xl bg-brand-blue/10 text-brand-blue flex items-center justify-center text-xl mb-4 group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-hand-fist"></i>
+                    </div>
+                    <h3 class="font-brand text-xl font-bold text-slateDark mb-2">Deep Tissue</h3>
+                    <p class="text-slateMedium text-xs leading-relaxed">
+                        Targeted firm pressure to relieve chronic tension, unbind deep muscle knots, and restore mobility.
+                    </p>
+                </div>
+
+                <!-- Sports Massage -->
+                <div class="bg-bgLight rounded-2xl p-6 border border-slate-200/80 hover:border-brand-green transition-all group shadow-sm hover:shadow-md">
+                    <div class="w-12 h-12 rounded-xl bg-brand-green/20 text-brand-greenDark flex items-center justify-center text-xl mb-4 group-hover:bg-brand-green group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-person-running"></i>
+                    </div>
+                    <h3 class="font-brand text-xl font-bold text-slateDark mb-2">Sports Massage</h3>
+                    <p class="text-slateMedium text-xs leading-relaxed">
+                        Focused recovery for athletes and active lifestyles. Boosts flexibility, prevents injuries, and reduces soreness.
+                    </p>
+                </div>
+
+                <!-- Shiatsu -->
+                <div class="bg-bgLight rounded-2xl p-6 border border-slate-200/80 hover:border-brand-blue transition-all group shadow-sm hover:shadow-md">
+                    <div class="w-12 h-12 rounded-xl bg-brand-blue/10 text-brand-blue flex items-center justify-center text-xl mb-4 group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-atom"></i>
+                    </div>
+                    <h3 class="font-brand text-xl font-bold text-slateDark mb-2">Shiatsu Therapy</h3>
+                    <p class="text-slateMedium text-xs leading-relaxed">
+                        Traditional pressure-point therapy that releases energy blockages, improves circulation, and relaxes mind & body.
+                    </p>
+                </div>
+
+                <!-- Swedish / Circulatory -->
+                <div class="bg-bgLight rounded-2xl p-6 border border-slate-200/80 hover:border-brand-green transition-all group shadow-sm hover:shadow-md">
+                    <div class="w-12 h-12 rounded-xl bg-brand-green/20 text-brand-greenDark flex items-center justify-center text-xl mb-4 group-hover:bg-brand-green group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-feather"></i>
+                    </div>
+                    <h3 class="font-brand text-xl font-bold text-slateDark mb-2">Swedish / Circulatory</h3>
+                    <p class="text-slateMedium text-xs leading-relaxed">
+                        Smooth, soothing long strokes designed to ease mental stress, boost blood flow, and induce deep serenity.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 bg-slateDark text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-brand-green block">Get In Touch</span>
+                    <h2 class="font-brand text-3xl sm:text-4xl font-extrabold">Ready to Book Your Mobile Massage?</h2>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Send us an inquiry or request an appointment directly. We serve the greater San Diego, CA area with 100% mobile, in-home treatment.
+                    </p>
+
+                    <div class="pt-4 space-y-4">
+                        <div class="flex items-center gap-4 bg-slate-800/80 p-4 rounded-2xl border border-slate-700">
+                            <div class="w-10 h-10 rounded-xl bg-brand-blue/20 text-brand-blue flex items-center justify-center text-lg shrink-0">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400 font-semibold uppercase">Email Contact</p>
+                                <a href="mailto:Lifesmassage@gmail.com" class="text-sm font-bold text-white hover:text-brand-blue transition-colors">Lifesmassage@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 bg-slate-800/80 p-4 rounded-2xl border border-slate-700">
+                            <div class="w-10 h-10 rounded-xl bg-brand-green/20 text-brand-green flex items-center justify-center text-lg shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400 font-semibold uppercase">Service Region</p>
+                                <p class="text-sm font-bold text-white">San Diego, California & Surrounding Areas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Direct Inquiry Form -->
+                <div class="lg:col-span-7 bg-white text-slateDark p-8 rounded-3xl shadow-2xl">
+                    <h3 class="font-brand text-2xl font-bold mb-2">Send an Inquiry / Request</h3>
+                    <p class="text-xs text-slateMedium mb-6">Fill out the details below to email <span class="font-semibold text-brand-blue">Lifesmassage@gmail.com</span> directly.</p>
+
+                    <form id="contactForm" onsubmit="handleDirectContact(event)" class="space-y-4">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slateMedium mb-1">Your Name</label>
+                                <input type="text" id="contact_name" required placeholder="Jane Doe" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-blue text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slateMedium mb-1">Your Email</label>
+                                <input type="email" id="contact_email" required placeholder="jane@example.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-blue text-sm">
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slateMedium mb-1">Preferred Duration</label>
+                                <select id="contact_duration" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-blue text-sm">
+                                    <option value="60 Minutes ($90)">60 Minutes ($90)</option>
+                                    <option value="90 Minutes ($130)" selected>90 Minutes ($130)</option>
+                                    <option value="120 Minutes ($180)">120 Minutes ($180)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slateMedium mb-1">San Diego Location / Zip</label>
+                                <input type="text" id="contact_location" placeholder="e.g. La Jolla, Downtown, 92101" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-blue text-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slateMedium mb-1">Message / Special Notes</label>
+                            <textarea id="contact_message" rows="3" placeholder="Tell us about any specific tension points, muscle injuries, or preferred appointment dates..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-blue text-sm"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-brand-green hover:bg-brand-greenDark text-white font-bold py-4 rounded-xl shadow-lg transition-all text-sm flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> Send Booking Request
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div id="bookingModal" class="fixed inset-0 z-50 hidden bg-slateDark/70 modal-blur flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto relative animate-fade-in">
+            
+            <button onclick="closeBookingModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slateDark text-xl focus:outline-none">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="mb-6">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-green">San Diego Mobile Session</span>
+                <h3 class="font-brand text-2xl font-bold text-slateDark">Request Appointment</h3>
+                <p class="text-xs text-slateMedium mt-1">Select your preferences below to generate your booking request to Lifesmassage@gmail.com.</p>
+            </div>
+
+            <form id="modalForm" onsubmit="handleModalSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slateMedium mb-1">Session Duration & Rate</label>
+                    <select id="modal_duration" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-blue text-sm font-semibold">
+                        <option value="60 Minutes ($90)">60 Minutes — $90</option>
+                        <option value="90 Minutes ($130)" selected>90 Minutes — $130 (Recommended)</option>
+                        <option value="120 Minutes ($180)">120 Minutes — $180</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slateMedium mb-2">Preferred Modalities (Select Any)</label>
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 cursor-pointer hover:bg-brand-blueLight/50">
+                            <input type="checkbox" name="modality" value="Deep Tissue" checked class="rounded text-brand-blue focus:ring-0">
+                            <span class="font-medium text-slateDark">Deep Tissue</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 cursor-pointer hover:bg-brand-blueLight/50">
+                            <input type="checkbox" name="modality" value="Sports Massage" class="rounded text-brand-blue focus:ring-0">
+                            <span class="font-medium text-slateDark">Sports Massage</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 cursor-pointer hover:bg-brand-blueLight/50">
+                            <input type="checkbox" name="modality" value="Shiatsu" class="rounded text-brand-blue focus:ring-0">
+                            <span class="font-medium text-slateDark">Shiatsu</span>
+                        </label>
+                        <label class="flex items-center gap-2.5 p-2.5 rounded-lg border border-slate-200 cursor-pointer hover:bg-brand-blueLight/50">
+                            <input type="checkbox" name="modality" value="Swedish / Circulatory" checked class="rounded text-brand-blue focus:ring-0">
+                            <span class="font-medium text-slateDark">Swedish / Circulatory</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slateMedium mb-1">Your Full Name</label>
+                        <input type="text" id="modal_name" required placeholder="John Smith" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-blue">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slateMedium mb-1">Your Email</label>
+                        <input type="email" id="modal_email" required placeholder="john@example.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-blue">
+                    </div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slateMedium mb-1">Preferred Date & Time</label>
+                        <input type="text" id="modal_time" required placeholder="e.g. Friday at 2:00 PM" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-blue">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slateMedium mb-1">San Diego Address / Area</label>
+                        <input type="text" id="modal_address" required placeholder="Street address or neighborhood" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-blue">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slateMedium mb-1">Health Notes / Focus Areas</label>
+                    <textarea id="modal_notes" rows="2" placeholder="e.g. Lower back tightness, shoulder stiffness..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-brand-blue"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-brand-blue hover:bg-brand-blueDark text-white font-bold py-3.5 rounded-xl shadow-lg transition-all text-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i> Submit Booking Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Confirmation Dialog -->
+    <div id="successToast" class="fixed bottom-6 right-6 z-50 hidden bg-slateDark text-white p-5 rounded-2xl shadow-2xl border border-brand-green/40 max-w-sm">
+        <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-full bg-brand-green text-white flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <div>
+                <p class="font-bold text-sm">Request Prepared!</p>
+                <p class="text-xs text-slate-300 mt-0.5">Your email app was triggered with details for <span class="text-brand-green font-semibold">Lifesmassage@gmail.com</span>.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <p class="font-brand font-bold text-white text-base">Life's Essentials Massage Therapy</p>
+                    <p class="text-xs text-slate-400 mt-1">Mobile In-Home Massage Serving Greater San Diego, CA</p>
+                </div>
+
+                <div class="flex items-center gap-6 text-sm font-medium">
+                    <a href="mailto:Lifesmassage@gmail.com" class="text-brand-blue hover:underline">Lifesmassage@gmail.com</a>
+                </div>
+
+                <p class="text-xs text-slate-500">
+                    &copy; <span id="year">2026</span> Life's Essentials Massage Therapy. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.className = 'fa-solid fa-bars text-2xl';
+            } else {
+                icon.className = 'fa-solid fa-xmark text-2xl';
+            }
+        }
+
+        function openBookingModal() {
+            document.getElementById('bookingModal').classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        function selectDurationAndBook(durationString) {
+            const durationSelect = document.getElementById('modal_duration');
+            for (let i = 0; i < durationSelect.options.length; i++) {
+                if (durationSelect.options[i].value.includes(durationString.substring(0, 6))) {
+                    durationSelect.selectedIndex = i;
+                    break;
+                }
+            }
+            openBookingModal();
+        }
+
+        function showToast() {
+            const toast = document.getElementById('successToast');
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 6000);
+        }
+
+        function handleModalSubmit(e) {
+            e.preventDefault();
+            
+            const duration = document.getElementById('modal_duration').value;
+            const name = document.getElementById('modal_name').value;
+            const email = document.getElementById('modal_email').value;
+            const time = document.getElementById('modal_time').value;
+            const address = document.getElementById('modal_address').value;
+            const notes = document.getElementById('modal_notes').value;
+
+            const checkboxes = document.querySelectorAll('input[name="modality"]:checked');
+            let modalities = [];
+            checkboxes.forEach((cb) => modalities.push(cb.value));
+            const modalityStr = modalities.length ? modalities.join(', ') : 'Custom Combination';
+
+            const subject = encodeURIComponent(`Mobile Massage Request - ${name}`);
+            const body = encodeURIComponent(
+                `Hi Life's Essentials Massage Therapy,\n\n` +
+                `I would like to request a mobile massage session in San Diego:\n\n` +
+                `• Name: ${name}\n` +
+                `• Email: ${email}\n` +
+                `• Duration & Rate: ${duration}\n` +
+                `• Selected Modalities: ${modalityStr}\n` +
+                `• Preferred Date/Time: ${time}\n` +
+                `• Location/Address: ${address}\n` +
+                `• Health Notes: ${notes || 'None'}\n\n` +
+                `Thank you!`
+            );
+
+            // Trigger mailto link directly to Lifesmassage@gmail.com
+            window.location.href = `mailto:Lifesmassage@gmail.com?subject=${subject}&body=${body}`;
+            
+            closeBookingModal();
+            showToast();
+        }
+
+        function handleDirectContact(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('contact_name').value;
+            const email = document.getElementById('contact_email').value;
+            const duration = document.getElementById('contact_duration').value;
+            const location = document.getElementById('contact_location').value;
+            const message = document.getElementById('contact_message').value;
+
+            const subject = encodeURIComponent(`Inquiry from Website - ${name}`);
+            const body = encodeURIComponent(
+                `Hi Life's Essentials Massage Therapy,\n\n` +
+                `Inquiry Details:\n` +
+                `• Name: ${name}\n` +
+                `• Email: ${email}\n` +
+                `• Desired Duration: ${duration}\n` +
+                `• San Diego Location: ${location || 'San Diego'}\n` +
+                `• Message: ${message}\n`
+            );
+
+            window.location.href = `mailto:Lifesmassage@gmail.com?subject=${subject}&body=${body}`;
+            showToast();
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life's Essentials Massage Therapy | Mobile Massage San Diego, CA</title>
