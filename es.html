@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life's Essentials Massage Therapy | Masoterapia a Domicilio en San Diego</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0090D0',
+                            darkBlue: '#0070A3',
+                            lightBlue: '#E6F4FA',
+                            green: '#70B62C',
+                            darkGreen: '#589320',
+                            sand: '#F8FAF9',
+                            dark: '#1E293B',
+                            muted: '#64748B'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brand-sand font-sans text-slate-800 antialiased selection:bg-brand-blue selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <svg class="h-10 w-auto" viewBox="0 0 380 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="25" y="55" width="55" height="10" rx="3" fill="#0090D0"/>
+                    <rect x="28" y="65" width="6" height="12" rx="1" fill="#1E293B"/>
+                    <rect x="71" y="65" width="6" height="12" rx="1" fill="#1E293B"/>
+                    <ellipse cx="60" cy="46" rx="20" ry="6" fill="#A7F3D0"/>
+                    <circle cx="36" cy="40" r="5" fill="#FED7AA"/>
+                    <path d="M50 48 C 55 35, 62 35, 65 48 Z" fill="#70B62C"/>
+                    <circle cx="62" cy="32" r="5" fill="#FED7AA"/>
+                    <line x1="92" y1="20" x2="92" y2="90" stroke="#0090D0" stroke-width="3"/>
+                    <text x="102" y="48" fill="#0090D0" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="28" letter-spacing="1.5">LIFE'S</text>
+                    <text x="102" y="76" fill="#0090D0" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="28" letter-spacing="1.5">ESSENTIALS</text>
+                    <text x="102" y="104" fill="#0090D0" font-family="'Plus Jakarta Sans', sans-serif" font-weight="400" font-size="20" letter-spacing="0.5">Massage Therapy</text>
+                </svg>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#servicios" class="text-sm font-medium text-slate-700 hover:text-brand-blue transition">Servicios</a>
+                <a href="#precios" class="text-sm font-medium text-slate-700 hover:text-brand-blue transition">Precios</a>
+                <a href="#tecnicas" class="text-sm font-medium text-slate-700 hover:text-brand-blue transition">Especialidades</a>
+                <a href="#contacto" class="text-sm font-medium text-slate-700 hover:text-brand-blue transition">Contacto</a>
+                <a href="index.html" class="text-xs font-semibold px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-full transition">English 🇺🇸</a>
+                <a href="#contacto" class="bg-brand-green hover:bg-brand-darkGreen text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-md transition">
+                    Reservar Cita
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-b from-brand-lightBlue/60 to-brand-sand py-20 lg:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl">
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-brand-blue/10 text-brand-blue mb-6">
+                    ✨ Servicio 100% A Domicilio en San Diego
+                </span>
+                <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-6">
+                    Masoterapia Profesional en la Comodidad de su Hogar
+                </h1>
+                <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+                    Alivie el dolor crónico, reduzca la rigidez muscular y mejore su movilidad sin salir de casa. Llevamos todo lo necesario para su sesión de masaje personalizada en San Diego.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#precios" class="bg-brand-blue hover:bg-brand-darkBlue text-white text-center px-8 py-4 rounded-xl font-semibold shadow-lg transition">
+                        Ver Precios y Duraciones
+                    </a>
+                    <a href="mailto:Lifesmassage@gmail.com" class="bg-white border border-slate-200 text-slate-800 text-center px-8 py-4 rounded-xl font-semibold hover:bg-slate-50 transition">
+                        Enviar un Correo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Precios / Duración -->
+    <section id="precios" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mb-4">Opciones y Tarifas</h2>
+                <p class="text-slate-600">Sesiones adaptadas completamente a sus necesidades corporales. Incluye camilla, aceites orgánicos y sábanas limpias.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 60 Min -->
+                <div class="border border-slate-200 rounded-2xl p-8 hover:border-brand-blue transition shadow-sm hover:shadow-md bg-white flex flex-col justify-between">
+                    <div>
+                        <span class="text-sm font-semibold text-brand-blue uppercase tracking-wider">Sesión Enfocada</span>
+                        <h3 class="text-2xl font-bold text-slate-900 mt-2 mb-4">60 Minutos</h3>
+                        <div class="text-4xl font-bold text-slate-900 mb-6">$90</div>
+                        <p class="text-slate-600 text-sm mb-6">Ideal para trabajar zonas específicas con tensión o dolor focalizado.</p>
+                    </div>
+                    <a href="mailto:Lifesmassage@gmail.com?subject=Reserva%2060%20Minutos" class="w-full block text-center bg-brand-lightBlue text-brand-blue font-semibold py-3 rounded-xl hover:bg-brand-blue hover:text-white transition">Reservar 60 Min</a>
+                </div>
+
+                <!-- 90 Min -->
+                <div class="border-2 border-brand-green rounded-2xl p-8 shadow-md bg-white flex flex-col justify-between relative">
+                    <span class="absolute -top-3 right-6 bg-brand-green text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Más Popular</span>
+                    <div>
+                        <span class="text-sm font-semibold text-brand-green uppercase tracking-wider">Cuerpo Completo</span>
+                        <h3 class="text-2xl font-bold text-slate-900 mt-2 mb-4">90 Minutos</h3>
+                        <div class="text-4xl font-bold text-slate-900 mb-6">$130</div>
+                        <p class="text-slate-600 text-sm mb-6">El tiempo perfecto para combinar relajación profunda y tratamiento muscular localizado.</p>
+                    </div>
+                    <a href="mailto:Lifesmassage@gmail.com?subject=Reserva%2090%20Minutos" class="w-full block text-center bg-brand-green text-white font-semibold py-3 rounded-xl hover:bg-brand-darkGreen transition">Reservar 90 Min</a>
+                </div>
+
+                <!-- 120 Min -->
+                <div class="border border-slate-200 rounded-2xl p-8 hover:border-brand-blue transition shadow-sm hover:shadow-md bg-white flex flex-col justify-between">
+                    <div>
+                        <span class="text-sm font-semibold text-brand-blue uppercase tracking-wider">Experiencia Total</span>
+                        <h3 class="text-2xl font-bold text-slate-900 mt-2 mb-4">120 Minutos</h3>
+                        <div class="text-4xl font-bold text-slate-900 mb-6">$180</div>
+                        <p class="text-slate-600 text-sm mb-6">Sesión extensiva de cuerpo completo para alivio profundo y restauración total.</p>
+                    </div>
+                    <a href="mailto:Lifesmassage@gmail.com?subject=Reserva%20120%20Minutos" class="w-full block text-center bg-brand-lightBlue text-brand-blue font-semibold py-3 rounded-xl hover:bg-brand-blue hover:text-white transition">Reservar 120 Min</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Especialidades -->
+    <section id="tecnicas" class="py-20 bg-brand-sand">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mb-4">Especialidades Terapéuticas</h2>
+                <p class="text-slate-600">Combinamos distintas técnicas según sus necesidades para lograr los mejores resultados.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                    <h3 class="font-bold text-slate-900 text-lg mb-2">Tejido Profundo</h3>
+                    <p class="text-slate-600 text-sm">Presión firme dirigida a aliviar nudos, tensión muscular crónica y rigidez profunda.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                    <h3 class="font-bold text-slate-900 text-lg mb-2">Masaje Deportivo</h3>
+                    <p class="text-slate-600 text-sm">Enfocado en la preparación y recuperación muscular, flexibilidad y rendimiento físico.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                    <h3 class="font-bold text-slate-900 text-lg mb-2">Shiatsu</h3>
+                    <p class="text-slate-600 text-sm">Técnica japonesa de digitopuntura para liberar bloqueos energéticos y reducir el estrés.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm">
+                    <h3 class="font-bold text-slate-900 text-lg mb-2">Sueco y Circulatorio</h3>
+                    <p class="text-slate-600 text-sm">Movimientos suaves y fluidos para mejorar la circulación sanguínea y promover la calma.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto / Reserva -->
+    <section id="contacto" class="py-20 bg-white">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mb-4">Programe su Cita</h2>
+            <p class="text-slate-600 mb-8">Escríbanos directamente a nuestro correo electrónico para coordinar su sesión a domicilio en San Diego.</p>
+
+            <div class="bg-brand-lightBlue/50 border border-brand-blue/20 rounded-2xl p-8 mb-8">
+                <span class="text-sm font-semibold text-brand-blue uppercase tracking-wider block mb-2">Correo Electrónico Directo</span>
+                <a href="mailto:Lifesmassage@gmail.com" class="text-2xl sm:text-3xl font-bold text-brand-blue hover:underline break-all">
+                    Lifesmassage@gmail.com
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 text-center text-sm">
+        <p>© 2026 Life's Essentials Massage Therapy. Todos los derechos reservados. San Diego, CA.</p>
+    </footer>
+
+</body>
+</html>
